@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "785392482758",
+    "project_id": "management-c86f8",
+    "storage_bucket": "management-c86f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785392482758:android:73f79c2a7e760eea8f9ac7",
+        "android_client_info": {
+          "package_name": "com.example.managementdna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785392482758-c68k68ivk5cjau5iossntmfj41op15v7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBAaUvH-mNxfpBW9Kqmhtg1Gg9OQw_CQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785392482758-c68k68ivk5cjau5iossntmfj41op15v7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
