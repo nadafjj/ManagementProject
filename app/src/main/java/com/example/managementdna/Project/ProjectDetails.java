@@ -3,13 +3,18 @@ package com.example.managementdna.Project;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.managementdna.R;
@@ -20,12 +25,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProjectDetails extends AppCompatActivity {
+public class ProjectDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     private String pName,pDescribtion, pGoals, pStartDate, pEndDate, pManager, userID;
+    int day, month, year;
+    int myday, myMonth, myYear;
+    boolean SorEdate;
+    Calendar calendar;
+    String StartCalender, EndCalender;
+    DatePickerDialog datePickerDialog;
+    TimePickerDialog timePickerDialog;
     EditText pName1, pDescribtion1, pGoals1, pStartDate1, pEndDate1, pManager1;
     private Button taskCostBtn,backToMAin;
 ///
@@ -39,11 +52,42 @@ public class ProjectDetails extends AppCompatActivity {
         pName1 = findViewById(R.id.pName1);
         pDescribtion1 = findViewById(R.id.pDescribtion1);
         pGoals1 = findViewById(R.id.pGoals1);
-        pStartDate1 = findViewById(R.id.pStartDate1);
-        pEndDate1 = findViewById(R.id.pEndDate1);
+        pStartDate1 = (EditText)findViewById(R.id.pStartDate1);
+        pEndDate1 = (EditText)findViewById(R.id.pEndDate1);
         pManager1 = findViewById(R.id.pManager1);
         taskCostBtn = findViewById(R.id.taskCostBtn);
         backToMAin = findViewById(R.id.backToMAin);
+
+        calendar=Calendar.getInstance();
+        StartCalender="";
+        EndCalender="";
+
+
+        pStartDate1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(ProjectDetails.this,ProjectDetails.this,year, month,day);
+                datePickerDialog.show();
+                SorEdate = true;
+            }
+        });
+        pEndDate1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                datePickerDialog = new DatePickerDialog(ProjectDetails.this,ProjectDetails.this,year, month,day);
+                datePickerDialog.show();
+                SorEdate = false;
+            }
+        });
+
 
         backToMAin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +121,8 @@ public class ProjectDetails extends AppCompatActivity {
                 Project.put("Project_Name", pName);
                 Project.put("Project_Describtion", pDescribtion);
                 Project.put("Project_Goals", pGoals);
-                Project.put("Project_StartDate", pStartDate);
-                Project.put("Project_EndDate", pEndDate);
+                Project.put("Project_StartDate", StartCalender);
+                Project.put("Project_EndDate", EndCalender);
                 Project.put("Project_Manager", pManager);
                 //check the add if it's success or not
                 documentrefReference.set(Project).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -91,4 +135,22 @@ public class ProjectDetails extends AppCompatActivity {
             }//onclick
         });//end on click listener
     }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+        myMonth = month+1;
+
+if (SorEdate){
+    StartCalender = year+"/"+month+"/"+dayOfMonth;
+    pStartDate1.setText(year+"/"+myMonth+"/"+dayOfMonth);
+}else{
+    EndCalender = year+"/"+month+"/"+dayOfMonth;
+    pEndDate1.setText(year+"/"+myMonth+"/"+dayOfMonth);
+        }
+
+
+    }
+
+
 }
