@@ -32,13 +32,11 @@ import java.util.Map;
 public class ProjectDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     private String pName,pDescribtion, pGoals, pStartDate, pEndDate, pManager, userID;
-    int day, month, year;
-    int myday, myMonth, myYear;
+    int day, month, year,myMonth;
     boolean SorEdate;
-    Calendar calendar;
+    Calendar calendarCheckStart,calendarCheckEnd;
     String StartCalender, EndCalender;
     DatePickerDialog datePickerDialog;
-    TimePickerDialog timePickerDialog;
     EditText pName1, pDescribtion1, pGoals1, pStartDate1, pEndDate1, pManager1;
     private Button taskCostBtn,backToMAin;
 ///
@@ -58,9 +56,10 @@ public class ProjectDetails extends AppCompatActivity implements DatePickerDialo
         taskCostBtn = findViewById(R.id.taskCostBtn);
         backToMAin = findViewById(R.id.backToMAin);
 
-        calendar=Calendar.getInstance();
         StartCalender="";
         EndCalender="";
+        calendarCheckStart= Calendar.getInstance();
+        calendarCheckEnd = Calendar.getInstance();
 
 
         pStartDate1.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +101,7 @@ public class ProjectDetails extends AppCompatActivity implements DatePickerDialo
         taskCostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Check date","Enter");
                 pName= pName1.getText().toString().trim();
                 pDescribtion = pDescribtion1.getText().toString();
                 pGoals = pGoals1.getText().toString();
@@ -133,6 +133,12 @@ public class ProjectDetails extends AppCompatActivity implements DatePickerDialo
                     Toast.makeText(ProjectDetails.this, "Fill project manager name ", Toast.LENGTH_LONG).show();
                     return;
                 }
+                Log.d("Check date"," "+ calendarCheckStart.get(Calendar.YEAR)+" "+calendarCheckEnd.get(Calendar.YEAR));
+                if (calendarCheckStart.get(Calendar.YEAR)>calendarCheckEnd.get(Calendar.YEAR)||calendarCheckStart.get(Calendar.MONTH)>calendarCheckEnd.get(Calendar.MONTH)||calendarCheckStart.get(Calendar.DAY_OF_MONTH)>calendarCheckEnd.get(Calendar.DAY_OF_MONTH)){
+                    Toast.makeText(ProjectDetails.this, "Please fill dates correctly", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 //asynchronously update doc, create the document if missing
                 Map<String, Object> update = new HashMap<>();
                 update.put("capital", true);
@@ -165,11 +171,20 @@ public class ProjectDetails extends AppCompatActivity implements DatePickerDialo
         myMonth = month+1;
 
 if (SorEdate){
+    calendarCheckStart.set(Calendar.YEAR, year);
+    calendarCheckStart.set(Calendar.MONTH, month);
+    calendarCheckStart.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+
     StartCalender = year+"/"+month+"/"+dayOfMonth;
     pStartDate1.setText(year+"/"+myMonth+"/"+dayOfMonth);
 }else{
+    calendarCheckEnd.set(Calendar.YEAR, year);
+    calendarCheckEnd.set(Calendar.MONTH, month);
+    calendarCheckEnd.set(Calendar.DAY_OF_MONTH, dayOfMonth);
     EndCalender = year+"/"+month+"/"+dayOfMonth;
     pEndDate1.setText(year+"/"+myMonth+"/"+dayOfMonth);
+
         }
 
 
