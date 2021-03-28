@@ -14,7 +14,7 @@
         <activity android:name=".TaskCard"></activity>
         <activity android:name=".addNewTask" />
         <activity android:name=".Project.ProjectList" />
-        <activity android:name=".projectTaskandCost" />
+        <activity android:name=".TaskAndCost.projectTaskandCost" />
         <activity android:name=".Project.ProjectDetails" />
         <activity android:name=".Login" />
         <activity android:name=".Project.MainActivity" />

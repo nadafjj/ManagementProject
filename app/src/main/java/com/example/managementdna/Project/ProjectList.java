@@ -45,6 +45,7 @@ public class ProjectList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
+                fAuth.signOut();
                 finish();
             }
         });

@@ -11,9 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.managementdna.R;
-import com.example.managementdna.projectTaskandCost;
+import com.example.managementdna.TaskAndCost.projectTaskandCost;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
