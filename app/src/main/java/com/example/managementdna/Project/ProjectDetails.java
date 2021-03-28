@@ -108,8 +108,31 @@ public class ProjectDetails extends AppCompatActivity implements DatePickerDialo
                 pStartDate = pStartDate1.getText().toString();
                 pEndDate = pEndDate1.getText().toString();
                 pManager = pManager1.getText().toString();
-                Log.d("ProjectDetails","pName1"+pName);
-
+                //Check if there is an empty field
+                if (pName.isEmpty()){
+                    Toast.makeText(ProjectDetails.this, "Fill project name ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (pDescribtion.isEmpty()){
+                    Toast.makeText(ProjectDetails.this, "Fill project description ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (pGoals.isEmpty()){
+                    Toast.makeText(ProjectDetails.this, "Fill project goal ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (pStartDate.isEmpty()){
+                    Toast.makeText(ProjectDetails.this, "Fill project start date ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (pEndDate.isEmpty()){
+                    Toast.makeText(ProjectDetails.this, "Fill project end date ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (pManager.isEmpty()){
+                    Toast.makeText(ProjectDetails.this, "Fill project manager name ", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 //asynchronously update doc, create the document if missing
                 Map<String, Object> update = new HashMap<>();
                 update.put("capital", true);
