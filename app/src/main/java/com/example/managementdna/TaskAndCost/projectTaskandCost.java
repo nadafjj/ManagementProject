@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.managementdna.Project.ProjectAdapter;
@@ -38,6 +39,8 @@ public class projectTaskandCost extends AppCompatActivity {
     ///
     String userID;
     String projectName;
+    double sum;
+    TextView totalcostHere2;
 
 
     @Override
@@ -47,6 +50,8 @@ public class projectTaskandCost extends AppCompatActivity {
 
         BackButton= findViewById(R.id.BackButton);
         addNewTask= findViewById(R.id.addNewTask);
+        totalcostHere2 = (TextView) findViewById(R.id.totalcostHere2);
+        sum=0;
 
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +95,18 @@ public class projectTaskandCost extends AppCompatActivity {
                 if (task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
-                        Log.d("Task "," document "+ document.get("TaskCost"));
+                        try {
+                            sum += Double.parseDouble(document.get("TaskCost").toString());
+                        } catch(NumberFormatException nfe) {
+                            System.out.println("Could not parse " + nfe);
+                        }
+                      //  Log.d("Task "," document task"+ document.get("TaskCost"));
                             arrayList.add(new TaskModel(document.get("TaskTitle").toString(), document.get("TaskStartDate").toString(),  document.get("TaskAssignedResources").toString(), document.get("TaskDuration").toString(), document.get("TaskCost").toString()));
                             adapter.notifyDataSetChanged();
                     }
                 }
+                Log.d("Task "," document task"+ sum);
+                totalcostHere2.setText(sum+"");
             }
 
 

@@ -114,6 +114,11 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
                     Toast.makeText(AddNewTask.this, "Fill project Cost ", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if (!isDouble(Cost)){
+                    Toast.makeText(AddNewTask.this, "Cost should be number ", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
 
 
 
@@ -169,6 +174,15 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+    }
+
+    boolean isDouble(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
