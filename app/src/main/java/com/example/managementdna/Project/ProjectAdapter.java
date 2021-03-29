@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.managementdna.R;
+import com.example.managementdna.TaskAndCost.AddNewTask;
 import com.example.managementdna.TaskAndCost.projectTaskandCost;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -49,6 +50,8 @@ public class ProjectAdapter extends ArrayAdapter<ProjectModel> {
                 Intent intent = new Intent(context, projectTaskandCost.class);
                 intent.putExtra("Project_Id", arrayList.get(position).getProjectId());
                 context.startActivity(intent);
+
+
             }
         });
 

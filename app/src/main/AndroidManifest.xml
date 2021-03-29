@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ManagementDNA">
         <activity android:name=".TaskCard"></activity>
-        <activity android:name=".addNewTask" />
+        <activity android:name=".TaskAndCost.AddNewTask" />
         <activity android:name=".Project.ProjectList" />
         <activity android:name=".TaskAndCost.projectTaskandCost" />
         <activity android:name=".Project.ProjectDetails" />

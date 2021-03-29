@@ -15,6 +15,7 @@ import com.example.managementdna.Project.ProjectAdapter;
 import com.example.managementdna.Project.ProjectDetails;
 import com.example.managementdna.Project.ProjectList;
 import com.example.managementdna.Project.ProjectModel;
+
 import com.example.managementdna.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +29,7 @@ import java.util.List;
 
 public class projectTaskandCost extends AppCompatActivity {
 
-    Button BackButton;
+    Button BackButton,addNewTask;
     ListView Task_List;
     List<TaskModel> arrayList=new ArrayList<>();
     //
@@ -45,6 +46,7 @@ public class projectTaskandCost extends AppCompatActivity {
         setContentView(R.layout.activity_project_taskand_cost);
 
         BackButton= findViewById(R.id.BackButton);
+        addNewTask= findViewById(R.id.addNewTask);
 
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,16 @@ public class projectTaskandCost extends AppCompatActivity {
                 finish();
             }
         });
+
+       /* addNewTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(projectTaskandCost.this, AddNewTask.class));
+                finish();
+            }
+        });*/
+
+
         //////
 
 
@@ -68,7 +80,7 @@ public class projectTaskandCost extends AppCompatActivity {
         if (extras!=null)
             projectName = extras.getString("Project_Id");
         if (projectName==""){
-            Toast.makeText(projectTaskandCost.this, "Something went wrong reload the app", Toast.LENGTH_LONG).show();
+            Toast.makeText(projectTaskandCost.this, "projectTaskandCost Something went wrong reload the app", Toast.LENGTH_LONG).show();
         }
 
 
@@ -88,6 +100,27 @@ public class projectTaskandCost extends AppCompatActivity {
 
         });
 
+        addNewTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentTo = new Intent(projectTaskandCost.this, AddNewTask.class);
+                intentTo.putExtra("Project_Id", projectName);
+                startActivity(intentTo);
+                finish();
+            }
+        });
+
+       /* BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // startActivity(new Intent(projectTaskandCost.this, ProjectList.class));
+                Intent intentTo = new Intent(projectTaskandCost.this, ProjectList.class);
+                intentTo.putExtra("Project_Id", projectName);
+                startActivity(intentTo);
+                finish();
+            }
+        });*/
 
     }
 
