@@ -58,6 +58,14 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         StartCalender="";
         calendarCheckStart= Calendar.getInstance();
 
+        userID = fAuth.getCurrentUser().getUid();
+        Bundle extras = getIntent().getExtras();
+        ProjectID="";
+        if (extras!=null)
+            ProjectID = extras.getString("Project_Id");
+        if (ProjectID==""){
+            Toast.makeText(AddNewTask.this, "AddNewTask Something went wrong reload the app", Toast.LENGTH_LONG).show();
+        }
 
        /* backToTasks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,14 +134,14 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
                 Map<String, Object> update = new HashMap<>();
                 update.put("capital", true);
 
-                userID = fAuth.getCurrentUser().getUid();
+               /* userID = fAuth.getCurrentUser().getUid();
                 Bundle extras = getIntent().getExtras();
                 ProjectID="";
                 if (extras!=null)
                     ProjectID = extras.getString("Project_Id");
                 if (ProjectID==""){
                     Toast.makeText(AddNewTask.this, "AddNewTask Something went wrong reload the app", Toast.LENGTH_LONG).show();
-                }
+                }*/
                 DocumentReference documentrefReference = db.collection("users").document(userID).collection("Projects").document(ProjectID).collection("Tasks").document();
                 //store data
                 Map<String, Object> Task = new HashMap<>();
