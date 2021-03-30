@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/deleteP"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_alignParentStart="true"

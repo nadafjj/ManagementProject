@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.managementdna.R;
 import com.example.managementdna.Register;
+import com.example.managementdna.TaskAndCost.projectTaskandCost;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -158,6 +159,9 @@ public class ProjectDetails extends AppCompatActivity implements DatePickerDialo
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(ProjectDetails.this, "Project Saved successfully", Toast.LENGTH_LONG).show();
+                        Intent intentTo = new Intent(ProjectDetails.this, ProjectList.class);
+                        startActivity(intentTo);
+                        finish();
                     }
                 });//end Oncomplete listener
 

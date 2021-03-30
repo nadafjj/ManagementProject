@@ -3,6 +3,8 @@ package com.example.managementdna.TaskAndCost;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,9 +40,10 @@ public class projectTaskandCost extends AppCompatActivity {
     FirebaseFirestore db=FirebaseFirestore.getInstance();
     ///
     String userID;
-    String projectName;
+    String projectName,projectID;
     double sum;
-    TextView totalcostHere2;
+    TextView totalcostHere2,Projectdelete;
+
 
 
     @Override
@@ -51,6 +54,7 @@ public class projectTaskandCost extends AppCompatActivity {
         BackButton= findViewById(R.id.BackButton);
         addNewTask= findViewById(R.id.addNewTask);
         totalcostHere2 = (TextView) findViewById(R.id.totalcostHere2);
+        Projectdelete=findViewById(R.id.Projectdelete);
         sum=0;
 
         BackButton.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +86,9 @@ public class projectTaskandCost extends AppCompatActivity {
         projectName="";
 
         Bundle extras = getIntent().getExtras();
+        projectID = extras.getString("Project_Id");///////////////////////////
+
+
         if (extras!=null)
             projectName = extras.getString("Project_Id");
         if (projectName==""){
@@ -111,6 +118,22 @@ public class projectTaskandCost extends AppCompatActivity {
 
 
         });
+
+        Projectdelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                db.collection("users").document(userID).collection("Projects").document(projectID).delete();
+
+                Toast.makeText(getApplicationContext(), "The project was deleted successfully", Toast.LENGTH_SHORT).show();
+                Intent intentTo = new Intent(projectTaskandCost.this, ProjectList.class);
+                startActivity(intentTo);
+                finish();
+            }
+
+            });
+
+
 
         addNewTask.setOnClickListener(new View.OnClickListener() {
             @Override
