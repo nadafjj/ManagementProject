@@ -155,12 +155,15 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
                 documentrefReference.set(Task).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(AddNewTask.this, "Task Saved successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddNewTask.this, "Task added successfully", Toast.LENGTH_LONG).show();
                         tTitle.setText("");
                         tST.setText("");
                         tDuration.setText("");
                         tRes.setText("");
                         tCost.setText("");
+                        Intent intentTo = new Intent(AddNewTask.this, projectTaskandCost.class);
+                        startActivity(intentTo);
+                        finish();
                     }
                 });//end Oncomplete listener
 

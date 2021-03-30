@@ -28,11 +28,7 @@ import java.util.List;
 public class ProjectAdapter extends ArrayAdapter<ProjectModel> {
     public static final String TAG = "TAG";
     private final Activity context;
-    TextView del;//
-    StorageReference profileRef;//
-    String itemID;//
-    StorageReference storageRef;//
-    FirebaseFirestore fStore;//
+
 
     private final List<ProjectModel> arrayList;
     FirebaseAuth fAuth;
