@@ -103,23 +103,23 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
 
                 //Check if there is an empty field
                 if (Title.isEmpty()){
-                    Toast.makeText(AddNewTask.this, "Fill project Title ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNewTask.this, "Fill task Title ", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (ST.isEmpty()){
-                    Toast.makeText(AddNewTask.this, "Fill project Start Date ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNewTask.this, "Fill task Start Date ", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (Duration.isEmpty()){
-                    Toast.makeText(AddNewTask.this, "Fill project Duration ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNewTask.this, "Fill task Duration ", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (Res.isEmpty()){
-                    Toast.makeText(AddNewTask.this, "Fill project Assigned Resources ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNewTask.this, "Fill task Assigned Resources ", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (Cost.isEmpty()){
-                    Toast.makeText(AddNewTask.this, "Fill project Cost ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddNewTask.this, "Fill task Cost ", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!isDouble(Cost)){
@@ -162,6 +162,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
                         tRes.setText("");
                         tCost.setText("");
                         Intent intentTo = new Intent(AddNewTask.this, projectTaskandCost.class);
+                        intentTo.putExtra("Project_Id", ProjectID);
                         startActivity(intentTo);
                         finish();
                     }

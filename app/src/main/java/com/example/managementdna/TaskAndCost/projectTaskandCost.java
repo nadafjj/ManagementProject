@@ -113,7 +113,7 @@ public class projectTaskandCost extends AppCompatActivity {
                     }
                 }
                 Log.d("Task "," document task"+ sum);
-                totalcostHere2.setText(sum+"");
+                totalcostHere2.setText(sum+" SR");
             }
 
 
